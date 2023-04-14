@@ -1,0 +1,21 @@
+﻿@*HomePage - shared view for Today and Planned blocks*@
+
+@using ToDoList.Models
+@using ToDoList.ViewModels
+@{
+    ViewData["Title"] = "Today ToDoLists";
+}
+
+@model List<ToDoListModel>
+
+
+
+    <div id="todayPlannedlistContainer">
+
+        @foreach (var item in Model)
+        {
+            if(item.toDoItems.Count() > 0){
+            Html.RenderPartial("_ToDoItems", new { items = item.toDoItems, name = item.Name, id = item.Id, showEmptyList = false });
+            }
+    }
+    </div>

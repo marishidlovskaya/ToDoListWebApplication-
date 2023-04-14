@@ -1,0 +1,21 @@
+﻿@using ToDoList.ViewModels
+@{
+    ViewData["Title"] = "Index";
+}
+@model ToDoListModel
+
+
+@{
+    if (@Model != null)
+    {
+        Html.RenderPartial("_ToDoItems", new { items = Model.toDoItems, name = Model.Name, id = Model.Id, showEmptyList = true });
+    }
+    else
+    {
+      <span>ToDo List does not exist</span>
+    }
+}
+
+
+   
+

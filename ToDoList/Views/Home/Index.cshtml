@@ -1,0 +1,88 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using ToDoList.ViewModels
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@model ToDoModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@if (!SignInManager.IsSignedIn(User))
+{
+    <div class="row hello-text">Welcome to TODO List!</div>
+}
+else
+{
+    <div class="row hello-text">Hello, @User.Identity?.Name! </div>
+    <div class="row mb-5 number-tasks-text">Today you have @Model.ToDoLists.SelectMany(s=>s.toDoItems).Count(f=>f.DueDate == DateTime.Today) tasks</div>
+    <div class="switch-btn">
+        <div style="display: flex;align-self: flex-end;">
+            <div class="mt-3 row form-check form-switch">
+                <label class="form-check-label form-check-label-main " for="switchVisibilityAllLists">show hidden</label>
+                <input class="form-check-input check-element" type="checkbox" id="switchVisibilityAllLists" @(Model.ShowHiddenToDoLists ? "checked='checked'" : "")>
+            </div>
+        </div>
+        <div style="display:grid; padding-top: 10px; padding-right: 15px">
+            <button type="button" class="btn btn-info btn-circle btn-xl btn-primary" style="line-height: 1.1" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <i class="fa-solid fa-plus" style="padding-left:1px">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="rgba(239,245,244,1)" viewBox="0 0 448 512"><path d="M240 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H32c-17.7 0-32 14.3-32 32s14.3 32 32 32H176V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H384c17.7 0 32-14.3 32-32s-14.3-32-32-32H240V80z" /></svg>
+                </i>
+            </button>
+        </div>
+
+    </div>
+    /*ToDoLists starts*/
+    <div id="toDolists" class="row row-centered container d-flex justify-content-center">
+        @{
+            Html.RenderPartial("_ToDoLists", Model);
+        }
+    </div>
+    /*ToDolist ends*/
+
+
+
+    /*modal add ToDolist starts*/
+    <!-- Modal -->
+    <div class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add/Edit ToDo list</h5>
+                    <button type="button" id="CloseListBtn2" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form method="post">
+                    <div class="modal-body">
+                        <input id="useridhash" name="useridhash" type="hidden" value="" />
+                        <div class="container">
+                            <div class="row">
+                                <label id="inputName" for="fname">Name:</label>
+                                <input type="text" id="fname" name="fname" maxlength="20">
+                                <input class="list-id-hidden" type="text" id="" hidden>
+                            </div>
+                            <div class="mt-3 row form-check form-switch-inmodal form-switch">
+                                <label class="form-check-label-modal" for="switchVisibilityofList">Hidden</label>
+                                <input class="form-check-input check-element" type="checkbox" id="switchVisibilityofList">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="CloseListBtn" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" id="SaveAddNewListBtn" class="btn btn-primary">Save</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    /*modal add ToDolist ends*/
+
+
+}
+
+
+
+
+
+
+

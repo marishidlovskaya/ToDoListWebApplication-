@@ -1,0 +1,200 @@
+﻿@using ToDoList.ViewModels
+@model dynamic
+
+    <div class="mt-3 wraper-totoitems">
+        <div class="card-hover-shadow-2x mb-3 card">
+            <div class="card-header-tab card-header">
+                <div class="card-header-title">
+                    <i class="fa fa-tasks"></i>&nbsp; @Model.name
+                    <input class="list-Id" id="list-Id-" type="number" value="@Model.id" hidden>
+                </div>
+            </div>
+
+            <div id="allCurrentItems">
+
+
+                <div class="scroll-area-sm">
+                    <div style="position: static;" class="ps ps--active-y">
+                        <div class="ps-content" id="contentToDoItems">
+                            <ul class="list-group-flush">
+                                @if (((List<ToDoItemModel>)Model.items).Count > 0)
+                                {
+                                    @foreach (var item in (List<ToDoItemModel>)Model.items)
+                                    {
+                                        @if (item.Status == "Completed")
+                                        {
+                                            <li class="list-group-itemi" style="display:none">
+                                                <div class="widget-content p-0">
+                                                    <div class="widget-content-wrapper">
+                                                        <div class="widget-content-left">
+                                                            <div class="widget-heading d-flex">
+                                                                <div class="cross-out-completed">
+                                                                    <s>@item.Name</s>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="widget-content-right">
+                                                            <button id="@item.Id" class="btn-done"><img src="/images/icon-done.svg" alt="" style="visibility:hidden"></button>
+                                                            <button id="@item.Id" class="btn-edit-item"><img src="/images/icon-edit.svg" alt=""></button>
+                                                            <button id="@item.Id" class="btn-delete"><img src="/images/icons-trash.svg" alt=""></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li class="list-group-itemi">
+                                                <div class="widget-content p-0">
+                                                    <div class="widget-content-wrapper">
+                                                        <div class="widget-content-left">
+                                                            <div class="widget-heading d-flex">
+
+                                                                @if (item.DueDate < DateTime.Today)
+                                                                {
+                                                                    <div class="cross-out-completed" style="color:#C13737">@item.Name</div>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <div class="cross-out-completed">@item.Name</div>
+                                                                }
+                                                                <p class="spacebetweenStatus"></p>
+                                                                <div id="status-text-@item.Id" class="status-text text-muted">@item.Status</div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="widget-content-right">
+                                                            <button id="@item.Id" class="btn-done"><img src="/images/icon-done.svg" alt=""></button>
+                                                            <button id="@item.Id" class="btn-edit-item"><img src="/images/icon-edit.svg" alt=""></button>
+                                                            <button id="@item.Id" class="btn-delete"><img src="/images/icons-trash.svg" alt=""></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        }
+
+                                    }
+                                }
+                                else
+                                {
+                                    <li class="list-group-itemi">
+                                        <div class="widget-content p-0">
+                                            <div class="widget-content-wrapper">
+                                                <div class="widget-content-left">
+                                                    <div class="widget-heading">The list is empty</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-footer footer-showhidden-item d-flex justify-content-between">
+                    <div class="form-check form-switch-items form-switch">
+                        <label class="form-check-label-modal me-1" for="showHiddenItems">show completed</label>
+                        <input class="ms-1 form-check-input-items form-check-input check-element" type="checkbox" id="showHiddenItem">
+                    </div>
+                    <div>
+                        <button type="button" id="addNewItemBtn" class="addNewItemBtn btn btn-info btn-circle btn-xl btn-primary" style="line-height: 1.1">
+                            <i class="fa-solid fa-plus" id="@Model.id" style="padding-left:1px">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="rgba(239,245,244,1)" viewBox="0 0 448 512"><path d="M240 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H32c-17.7 0-32 14.3-32 32s14.3 32 32 32H176V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H384c17.7 0 32-14.3 32-32s-14.3-32-32-32H240V80z" /></svg>
+                            </i>
+                        </button>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+        </div>
+    </div>
+
+
+
+
+
+<!-- modal add ToDoItem starts -->
+<div class="modal" id="additemmodal" tabindex="-1" aria-labelledby="addItemModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-add-item">
+        <div class="modal-content modal-content-addnew-item">
+            <form method="post" id="addNewItemForm" class="addNewItemForm" role="form">
+                <input class="list-Id-in-form" id="listIdForm" type="number" value="" hidden>
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addItemModalLabel">Add/Edit task</h5>
+                    <button type="button" id="CloseListBtn3" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="container">
+
+                        <div class="row">
+                            <div class="col-4 labels">
+                                <label class="mt-2 mb-3" for="inputItemtext">Name:</label>
+                                <label class="mb-3" for="inputItemDescr">Description:</label>
+                                <label class="mb-2" for="inputItemDueDate">Due Date:</label>
+                                <label class="mb-2 mt-1" for="inputItemStatus">Status:</label>
+                                <label class="mt-1 mb-2" for="inputItemNote">Note:</label>
+                                <label class="mt-5" id="label-add-datetime" for="date-start" style="display:none">Reminder:</label>
+                                <div id="trash-img" class="mt-2 btn-delete-reminder"><img src="/images/delete-181.svg" style="width: 25px" alt=""></div>
+
+
+
+                            </div>
+                            <div class="col-8">
+                                <input class="mt-2 mb-2" type="text" id="inputItemtext" maxlength="20" required>
+                                <input class="task-id" type="text" id="task-id" hidden>
+                                <input class="mb-2" type="text" id="inputItemDescr" name="fname" maxlength="20">
+                                <input class="mt-1 mb-2" type="date" id="inputItemDueDate">
+                                <div class="mb-2 mt-1">
+                                    <select id="statuses" class="btn-sm dropdown-toggle" aria-label="Default select example">
+                                        <option>Not started</option>
+                                        <option>In Progress</option>
+                                        <option>Completed</option>
+                                    </select>
+                                </div>
+                                <textarea class="text-area mt-1 mb-2" id="inputItemNote" name="inputItemNote"></textarea>
+                                <input class="mt-1 mb-2" type="date" id="date-start" style="display:none" required>
+                                <input class="mt-1 mb-2" type="time" id="time-start" value="12:00:00" style="display:none">
+                            </div>
+                        </div>
+
+                        <div class="buttuns-additional mt-4">                                                      
+                            <div class="reminder-button">
+                                <button type="button" class="btn-add-reminder btn-primary">
+                                    <div>
+                                        <img src="/images/reminder.png" class="img-reminer" />
+                                    </div>
+                                    <span class="bi bi-plus"></span> Add remider</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="CloseListBtn3" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" id="SaveAddNewItem" class="save-Add-New-Item btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- modal add ToDoItem ends -->
+
+<script src="~/js/todo.js"></script>
+
+<script>
+    var tomorrowDate = new Date();
+    tomorrowDate.setDate(new Date().getDate() + 1);
+    document.getElementById('date-start').defaultValue = tomorrowDate.toISOString().substr(0, 10);
+    
+</script>
+
+
+
+
+
+
+

@@ -1,0 +1,161 @@
+﻿@using ToDoList.ViewModels
+@model ToDoModel
+
+
+<ul class="list-group text-white">
+    <li class="list-group-item d-flex justify-content-between align-content-center">
+        <div class="container d-flex" style="padding:0px">
+            <div id="itemsDueToday" class="col-11 todoListArea1">
+                <div>
+                    <img src="/images/sun_icon.svg" width="40" />
+                </div>
+                <div class="ml-2 ms-4">
+                    <h6 class="mb-0">Today</h6>
+                    <div class="about">
+                        <span>@Model.ToDoLists.SelectMany(s=>s.toDoItems).Count(f=>f.DueDate == DateTime.Today && f.Status != "Completed") tasks</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </li>
+
+    <li class="list-group-item d-flex justify-content-between align-content-center">
+        <div class="container d-flex" style="padding:0px">
+            <div id="allItems" class="col-11 todoListArea1">
+                <div>
+                    <img src="/images/calendar_icon.svg" width="40" />
+                </div>
+                <div class="ml-2 ms-4">
+                    <h6 class="mb-0">Planned</h6>
+                    <div class="about">
+                        <span>
+                            @Model.ToDoLists.SelectMany(s=>s.toDoItems).Count(f=>f.Status != "Completed") tasks</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </li>
+
+    @if (Model.ShowHiddenToDoLists == false)
+    {
+
+        foreach (var item in Model.ToDoLists)
+        {
+            if (!item.isListHidden)
+            {
+                <li class="list-group-item d-flex justify-content-between align-content-center">
+                    <div class="container d-flex" style="padding:0px">
+                        <div id="@item.Id" class="col-11 todoListArea">
+                            <div>
+                                <img src="/images/todo_icon.svg" width="40" />
+                            </div>
+                            <div class="ml-2 ms-4">
+                                <h6 class="mb-0 list-name">@item.Name</h6>
+                                <div class="about">
+                                    <span>@Model.ToDoLists.Where(x=>x.Id == @item.Id).Select(f=>f.toDoItems == null ? 0 : f.toDoItems.Count).FirstOrDefault() tasks</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-1">
+                            <div class="dropdown">
+                                <button class="btn-drp" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <svg width="12" height="14" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                                        <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+                                    </svg>
+                                </button>
+                                <ul class="dropdown-menu drp-menu-over-additional">
+                                    <li><a id="@item.Id" name="@item.Name" class="edit-item dropdown-item txt-drp-item">Edit</a></li>
+                                    <li><a id="@item.Id" name="@item.Name" class="copy-item dropdown-item txt-drp-item">Copy</a></li>
+                                    <li><a id="@item.Id" class="delete-item dropdown-item txt-drp-item">Delete</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            }
+        }
+    }
+
+    else
+    {
+        foreach (var item in Model.ToDoLists)
+        {
+            <li class="list-group-item d-flex justify-content-between align-content-center">
+                <div class="container d-flex" style="padding:0px">
+                    <div id="@item.Id" class="col-11 todoListArea">
+                        <div>
+                            <img src="/images/todo_icon.svg" width="40" />
+                        </div>
+                        <div class="ml-2 ms-4">
+                            <h6 class="mb-0 list-name">@item.Name</h6>
+                            <div class="about">
+                                <span>@Model.ToDoLists.Where(x=>x.Id == @item.Id).Select(f=>f.toDoItems == null ? 0 : f.toDoItems.Count).FirstOrDefault() tasks</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-1">
+                        <div class="dropdown">
+                            <button class="btn-drp" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <svg width="12" height="14" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                                    <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+                                </svg>
+                            </button>
+                            <ul class="dropdown-menu drp-menu-over-additional">         
+                                <li><a id="@item.Id" name="@item.Name" class="edit-item dropdown-item txt-drp-item">Edit</a></li>
+                                <li><a id="@item.Id" name="@item.Name" class="copy-item dropdown-item txt-drp-item">Copy</a></li>
+                                <li><a id="@item.Id" class="delete-item dropdown-item txt-drp-item">Delete</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        }
+    }
+</ul>
+
+<!-- Modal Delete confirmation -->
+<div class="modal" id="myModalDelete">
+    <div class="mod-delete modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+            <!-- Modal footer -->
+            <div class="modal-body modal-delete-md me-0 ms-0 m-3">
+                <input id="useridfordeletion" name="useridfordeletion" type="hidden" value="" />
+                <div class="d-flex justify-content-center mb-3">Are you sure?</div>
+                <div class="d-flex justify-content-center">
+                    <div>
+                        <button type="button" id="confirmdeletion" class="btn btn-success confirm-del-mod-btn me-2" data-bs-dismiss="modal" style="width: 90px">Confirm</button>
+                        <button type="button" class="btn btn-secondary close-del-mod-btn ms-2" data-bs-dismiss="modal" style="width: 90px">Close</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Modal Copy list confirmation -->
+<div class="modal" id="myModalCopy">
+    <div class="mod-delete modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+            <!-- Modal footer -->
+            <div class="modal-body me-0 ms-0 m-3">
+                <input id="useridfordeletion" name="useridfordeletion" type="hidden" value="" />
+                <div class="d-flex justify-content-center mb-3">Do you want to copy ToDoList?</div>
+                <div class="d-flex justify-content-center">
+                    <div>
+                        <button type="button" id="confirmCopy" class="btn btn-success confirm-del-mod-btn me-2" data-bs-dismiss="modal" style="width: 90px">Yes</button>
+                        <button type="button" class="btn btn-secondary close-del-mod-btn ms-2" data-bs-dismiss="modal" style="width: 90px">Close</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="~/js/todo.js"></script>
+

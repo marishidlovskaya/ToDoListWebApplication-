@@ -1,0 +1,772 @@
+﻿/* #F3B802 yellow background*/
+/*  #44413A  dark grey  */
+/*  #E4D7AF  bedge */
+
+.nav-bar-menu-cst
+{
+    display:contents;
+}
+
+.header-menu-container{
+    max-width:100%;
+    padding: 0px;
+}
+
+.menu-items li {
+    font-size: 18px;
+    font-weight: 400;
+    color: #44413A;
+}
+
+.btn-menu:hover, .logo-image-top:hover {
+    opacity: 0.8;
+    /*background: #A7A194;*/
+}
+
+html, body {
+    height: 100%;
+    overflow: hidden;
+}
+
+.content {
+    background-image: url('../images/backGround.jpg');
+    background-size: cover;
+    height: 100%;
+}
+.hello-text {
+    font-family: "Caveat", cursive;
+    font-weight: 500;
+    color: #44413A;
+    font-size: 29px;
+}
+.number-tasks-text {
+    font-family: "Caveat";
+    font-weight: 400;
+    color: #44413A;
+    font-size: 18px;
+}
+.logo-image-top {
+    width: 47px;
+}
+
+#registerSubmit, #login-submit {
+    background: #656975;
+}
+.align-register-btns {
+    align-items: baseline!important;
+}
+
+.show-hidden {
+    padding-right: 0px;
+}
+.btn-success, .btn-danger {
+    border-radius: 0.85rem;
+}
+.btn-success {
+    height: 27.6px;
+    min-height: calc(1.5em + .75rem + 0px);
+}
+
+.btn-circle.btn-xl {
+    width: 60px;
+    height: 60px;
+    padding: 10px 16px;
+    border-radius: 35px;
+    font-size: 24px;
+    line-height: 1.03;
+    background-color: #198754;
+}
+
+#exampleModalLabel {
+    font-size: 1.0rem;
+    font-weight: 400;
+}
+#inputName, #fname {
+    padding: 5px;
+}
+.todoListArea, .todoListArea1 {
+    display: -webkit-box;
+}
+
+.modal-dialog-add-item{
+  position:absolute;
+}
+.mod-delete {
+    left: 10%;
+    top: 0%;
+}
+
+.close-del-mod-btn, .confirm-del-mod-btn {
+    border-radius: 0.25rem;
+}
+
+.form-check-label {
+    width: auto;
+    display: flex;
+    padding-right: 0px;
+    padding-left: 3px;
+}
+.form-check-label-modal {
+    padding-left: 7px;
+}
+#switchVisibilityAllLists, #switchVisibilityofList {
+    margin-left: 7px;
+}
+.footer-showhidden-item{
+    padding-left: 0px;
+}
+.form-check {
+    display: inline-flex;
+    padding-left: 10px;
+}
+.form-switch-inmodal {
+    display: flex;
+    padding: 0px;
+}
+.form-switch .form-check-input {
+    margin-left: 0em;
+}
+
+#switchVisibilityAllLists:checked, #switchVisibilityofList:checked, #showHiddenItem:checked {
+    background-color: #198754;
+    border-color: none;
+}
+#switchVisibilityAllLists:after, #switchVisibilityofList:after, #showHiddenItem:after {
+    display: none;
+}
+
+.spacebetweenStatus{
+    margin-left: 10px;
+}
+.status-text {
+    font-size: 14px;
+    opacity: 0.8;
+    line-height: 1.5rem;
+}
+#statuses{
+    width: 140px;
+}
+.form-switch-items{
+    align-items: end;
+}
+
+#todayPlannedlistContainer {
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    overflow-y: auto;
+    height: 500px;
+}
+
+#todayPlannedlistContainer::-webkit-scrollbar {
+    display: none;
+}
+
+#inputItemDescr, #inputItemtext {
+    width: 100%;
+}
+/*----laptop version----*/
+@media (min-width: 575px) {
+    header{
+        height: 90px;
+        max-height: 90px;
+    }
+    .navbar-brand {
+        margin-left: 30px;
+        padding-top: 1.4125rem;
+    }
+    .navbar-nav {
+        margin-right: 100px;
+    }
+    .content {
+        background-position: right top;
+        max-width: 100%;
+    }
+    .hello-text {
+        padding: 40px 100px 0px 0px;
+        display: flex;
+        justify-content: center;
+    }
+    .number-tasks-text {
+        padding: 10px 100px 0px 0px;
+        display: flex;
+        justify-content: center;
+    }
+    .row-centered {
+        padding-left: 50px;
+    }
+    .switch-btn {
+        display: flex;
+        justify-content: space-between;
+        max-width: 360px;
+        padding-inline-start: 41px;
+        margin-bottom: 15px;
+    }
+    .btn-menu{
+        color: black;
+        font-size: 17px;
+        font-weight: 500;
+        background: #A7A194;
+        opacity: 0.9;
+    }
+    #toDolists {
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        overflow-y: auto;
+        height: 360px;
+    }
+    #toDolists::-webkit-scrollbar {
+        display: none;
+    }
+    .modal-content {
+        max-width: 60%;
+    }
+    .modal-content-addnew-item {
+        min-width: 100%;
+    }
+    .widget-content-right {
+        margin-left: 40px;
+    }
+    .widget-content-left {
+        width: 240px
+    }
+    .modal-dialog {
+        top:12%;
+    }
+    .modal-dialog-add-item {
+        top: 12%;
+        left: 20%;
+    }
+
+    #reminders {
+        bottom: 1%;
+        max-height: 260px;
+    }
+
+}
+
+/*the widest screen*/
+@media (min-width: 948px) {
+    header {
+        height: 90px;
+        max-height: 90px;
+    }
+
+    .content {
+        background-position: right top;
+        max-width: 100%;
+    }
+
+    .hello-text {
+        padding: 40px 150px 0px 0px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .number-tasks-text {
+        padding: 10px 150px 0px 0px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .row-centered {
+        padding-left: 176px;
+    }
+
+    .switch-btn {
+        display: flex;
+        justify-content: space-between;
+        max-width: 565px;
+        padding-inline-start: 165px;
+        margin-bottom: 15px;
+    }
+
+    .btn-menu {
+        color: black;
+        font-size: 17px;
+        font-weight: 500;
+        background: #A7A194;
+        opacity: 0.9;
+    }
+
+    #toDolists {
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        overflow-y: auto;
+        height: 360px;
+    }
+
+    #toDolists::-webkit-scrollbar {
+        display: none;
+    }
+
+    .modal-content {
+        max-width: 60%
+    }
+
+    .widget-content-right {
+        margin-left: 40px;
+    }
+
+    .widget-content-left {
+        width: 240px
+    }
+
+    #additemmodal {
+        min-width: 128%;
+    }
+
+    .modal-dialog {
+        top: 12%;
+        left: 20%;
+    }
+
+    .modal-dialog-add-item {
+        top: 12%;
+        left: 20%;
+    }
+
+    #reminders {
+        bottom: 1%;
+        max-height: 260px;
+    }
+}
+    /*----mobile version----*/
+    @media (max-width: 576px) {
+        header {
+            max-height: 150px;
+        }
+
+        .content {
+            background-position: right 25% top;
+        }
+
+        .hello-text {
+            margin: 10px;
+            padding: 40px 20px 0px 20px;
+        }
+
+        .number-tasks-text {
+            margin: 10px;
+            padding: 0px 20px 20px;
+        }
+
+        .menu-items {
+            display: flex;
+            flex-direction: unset;
+            margin-top: 22px;
+        }
+
+        .switch-btn {
+            display: flex;
+            justify-content: space-between;
+            max-width: 260px;
+            padding-inline-start: 12px;
+            margin-bottom: 15px;
+        }
+
+        #toDolists {
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            overflow-y: auto;
+            height: 280px;
+            padding-right: 40px;
+        }
+
+        #toDolists::-webkit-scrollbar {
+            display: none;
+        }
+
+        .modal-content {
+            max-width: 70%;
+        }
+
+        .widget-content-right {
+            display: contents;
+            margin-left: 20px;
+        }
+
+        .widget-content-left {
+            min-width: 210px
+        }
+
+        .modal-dialog, .modal-dialog-add-item {
+            top: 12%;
+            left: 10%;
+        }
+
+        #reminders {
+            bottom: 1%;
+            right: 5%;
+            max-height: 180px;
+        }
+
+    }
+
+        /*-------ToDolist Homepage styling starts----*/
+
+        .list-group {
+            height: 70px;
+        }
+
+        .list-group-item {
+            margin-top: 10px;
+            max-width: 400px;
+            border-radius: 0rem;
+            background: #E4D7AF;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .list-group-item:hover {
+            transform: scaleX(1.1);
+            z-index: 3;
+        }
+
+        #container {
+            opacity: 0;
+            transition: all 0.6s ease-in-out;
+        }
+
+        .about span {
+            font-size: 12px;
+            margin-right: 10px;
+        }
+
+        input[type=checkbox] {
+            position: relative;
+            cursor: pointer;
+        }
+
+        input[type=checkbox]:before {
+            content: "";
+            display: none;
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            top: 0px;
+            left: 0;
+            border-radius: 3px;
+            background-color: green;
+        }
+
+        input[type=checkbox]:checked:after {
+            content: "";
+            display: none;
+            width: 7px;
+            height: 12px;
+            border-width: 0 2px 2px 0;
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+            position: absolute;
+            top: 2px;
+            left: 6px;
+            background-color: red;
+        }
+        /*-------ToDolist Homepage styling ends----*/
+
+
+
+        /*----dropdown dots starts*/
+        .btn-drp {
+            width: 30px !important;
+            height: 30px !important;
+            padding: 0 !important;
+            border: none !important;
+            background: #E4D7AF;
+        }
+
+        .dropdown-menu {
+            min-width: 100px !important;
+        }
+
+        .dropdown-item {
+            padding: 0px 5px !important;
+            font-size: 12px !important;
+        }
+
+
+        .items-under {
+            position: relative;
+            z-index: 1;
+        }
+
+        .drp-menu-over {
+            position: absolute;
+            z-index: 2;
+            background: #E4D7AF;
+            text-decoration: none;
+        }
+
+        .drp-menu-over-additional {
+            position: absolute;
+            z-index: 3;
+            background: #E4D7AF;
+            text-decoration: none;
+        }
+
+        .txt-drp-item {
+            color: #545452;
+            font-weight: 600;
+        }
+
+        .txt-drp-item:hover {
+            opacity: 0.8;
+            cursor: pointer;
+        }
+        /*----dropdown dots ends*/
+
+
+
+        /*ToToItems start*/
+
+        .card {
+            box-shadow: 0 0.46875rem 2.1875rem rgba(4, 9, 20, 0.03), 0 0.9375rem 1.40625rem rgba(4, 9, 20, 0.03), 0 0.25rem 0.53125rem rgba(4, 9, 20, 0.05), 0 0.125rem 0.1875rem rgba(4, 9, 20, 0.03);
+            border-width: 0;
+            transition: all .2s;
+        }
+
+        .card-header:first-child {
+            border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0;
+        }
+
+        .wraper-totoitems, .card-header-tab {
+            display: flex;
+            justify-content: center;
+            padding-top: 30px;
+            max-height: 600px;
+        }
+
+        .d-block {
+            display: flex !important;
+            justify-content: end;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            border-bottom-width: 1px;
+            padding-top: 0;
+            padding-bottom: 0;
+            padding-right: 0.625rem;
+            height: 3.5rem;
+            background-color: #E4D7AF;
+        }
+
+        .widget-subheading {
+            color: #858a8e;
+            font-size: 10px;
+        }
+
+        .card-header-title {
+            font-family: "Caveat", cursive;
+            font-weight: 500;
+            color: #44413A;
+            font-size: 22px;
+        }
+
+        .btn-actions-pane-right {
+            margin-left: auto;
+            white-space: nowrap;
+        }
+
+        .text-capitalize {
+            text-transform: capitalize !important;
+        }
+
+        .scroll-area-sm {
+            height: fit-content;
+            overflow-x: hidden;
+            background: #E4D7AF;
+            max-height: 200px;
+        }
+
+        .list-group-itemi {
+            position: relative;
+            display: block;
+            padding: 0.75rem 1.25rem;
+            margin-bottom: -1px;
+            border: 1px solid rgba(0, 0, 0, 0.125);
+        }
+
+        .list-group {
+            display: flex;
+            flex-direction: column;
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+
+        .list-group-flush {
+            padding-left: 0px;
+        }
+
+        .widget-content {
+            padding: 1rem;
+            font-weight: 500;
+        }
+
+        .widget-content .widget-content-wrapper {
+            display: flex;
+            flex: 1;
+            position: relative;
+        }
+
+        .widget-content .widget-content-right.widget-content-actions {
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity .2s;
+        }
+
+
+        .widget-content-right img {
+            max-width: 50%;
+        }
+
+        .btn:not(:disabled):not(.disabled) {
+            cursor: pointer;
+        }
+
+        .btn-done, .btn-edit-item, .btn-delete {
+            border: none;
+            background: #fff;
+            padding: 0px;
+            background: #E4D7AF;
+        }
+
+        .card-footer {
+            background-color: #E4D7AF;
+        }
+
+        #additemmodal {
+            min-width: 128%;
+        }
+
+        .buttuns-additional {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+        }
+
+        #trash-img {
+            display: none;
+            border: none;
+            background: #fff;
+        }
+
+        .btn-add-notes, .btn-add-notes:hover {
+            background: #EDF09C;
+            color: black;
+            border: #364517;
+            max-width: 140px;
+            height: 40px;
+            display: flex;
+            font-size: 14px;
+            font-weight: 500;
+            align-items: center;
+            border-radius: 0.25rem;
+        }
+
+        .btn-add-notes d {
+            max-height: 10px;
+        }
+
+        .btn-add-reminder, .btn-add-reminder:hover, .btn-add-reminder::after {
+            background: #364517;
+            color: white;
+            border: #AC4545;
+            max-width: 140px;
+            height: 40px;
+            display: flex;
+            font-size: 14px;
+            align-items: center;
+            border-radius: 0.25rem;
+        }
+
+        .add-notes-modal-dialog {
+            left: 0%;
+        }
+
+        .btn-add-notes:hover, .btn-add-reminder:hover {
+            opacity: 0.8;
+        }
+
+        .img-reminer {
+            max-width: 25px;
+        }
+
+        .shadow-0 {
+            min-width: max-content;
+            justify-content: space-between;
+            height: 40px;
+        }
+
+        #addnoteBtn {
+            background: #364517;
+        }
+
+        .note_ {
+            padding-left: 10px;
+        }
+
+        #btnDoneNote, #btnDeleteNote {
+            background: #fff;
+            border: none;
+        }
+
+        .btn-done-note img, .btn-delete-note img {
+            width: 25px;
+        }
+
+        .labels label, .text-area {
+            width: 100%;
+        }
+
+
+        .div-reminder {
+            background: #C2C2C2;
+            opacity: 0.8;
+            margin-top: 5px;
+        }
+
+        .close-reminder-btn {
+            background: none;
+            border-radius: 0.3rem;
+            border: none;
+        }
+
+.item, .link-success {
+    font-weight: 500;
+}
+
+        .close-reminder-btn span {
+            font-size: 20px;
+        }
+
+#reminders {
+    display: block !important;
+    position: absolute;
+    right: 5%;
+    max-width: 250px;
+    height: 300px;
+    -webkit-overflow-scrolling: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    overflow-y: auto;
+}
+
+        #reminders::-webkit-scrollbar {
+            display: none;
+        }
+
+
+
+
+        /*ToToItems start*/
+
+
+
+
