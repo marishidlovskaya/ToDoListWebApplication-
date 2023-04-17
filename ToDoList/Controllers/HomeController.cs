@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 using ToDoList.Data;
 using ToDoList.Models;
@@ -7,6 +8,7 @@ using ToDoList.ViewModels;
 
 namespace ToDoList.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ApplicationDbContext _applicationDbContext;

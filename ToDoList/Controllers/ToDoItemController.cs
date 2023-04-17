@@ -34,21 +34,6 @@ namespace ToDoList.Controllers
             }
         }
 
-        [Route("AddReminder")]
-        [HttpPost]
-        public IActionResult AddReminder(ToDoItemModel reminderModel)
-        {
-            try
-            {
-                //_toDoService.AddReminder(reminderModel);
-                return Ok("Ok");
-            }
-            catch
-            {
-                return Problem("Error during saving the reminder");
-            }
-        }
-
         
         [Route("UpdateItem")]
         [HttpPut]
