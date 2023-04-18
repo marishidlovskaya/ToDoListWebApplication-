@@ -86,11 +86,16 @@
         item.Name = $('#inputItemtext').val();
         item.Description = $('#inputItemDescr').val();
         item.DueDate = new Date($('#inputItemDueDate').val());
-        item.DateReminder = date.toISOString().replace(/\.\d{3}Z$/, '');
+        if ($('.reminder-button').css("display") == "none")
+        {
+            item.DateReminder = date.toISOString().replace(/\.\d{3}Z$/, '');           
+        }
+        else {           
+            item.DateReminder = null; 
+        }       
         item.Note = $('#inputItemNote').val();
         item.Status = $('#statuses').val();
         item.ToDoListId = $('#listIdForm').attr("value");
-        console.log(item);
         var id = $('#task-id').val();
 
         if (id == "") {
@@ -120,10 +125,16 @@
                 
 
                 if (item.dateReminder != null) {
-                    const ReminderDateString = (item.dateReminder).substr(0, 10);
-                    const ReminderTimeString = item.dateReminder.substr(11, 5);
-                    $('#date-start').val(ReminderDateString);
-                    $("#time-start").val(ReminderTimeString);
+                    var DbDate = new Date(item.dateReminder + 'Z').toISOString();
+                    var fDate = new Date(DbDate);
+                    const dateString = fDate.toString();
+                    const date = new Date(dateString);
+                    const formattedDate = date.toLocaleDateString('en-CA', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\//g, '-');
+                    const formattedTime = date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false });
+
+                    $('#date-start').val(formattedDate);
+                    $("#time-start").val(formattedTime.replace(/([\d]{2}):([\d]{2})(.*)/, '$1:$2'));
+                    console.log($("#time-start").val());
 
                     $('.reminder-button').css("display", "none");
                     $('#trash-img').css("display", "block");
@@ -163,6 +174,12 @@
         $('#inputItemNote').val("");
         $('#statuses').val("Not started");
         $('#task-id').val("");
+        $('.reminder-button').css("display", "flex");
+        $('#trash-img').css("display", "none");
+        $('#label-add-datetime').css("display", "none");
+        $('#time-start').css("display", "none");
+        $('#date-start').css("display", "none"); 
+
     }
 
     function AddNewItem(item) {
@@ -209,7 +226,7 @@
 
 
 
-    $('#CloseListBtn3').on('click', function () {
+    $('#CloseListBtn3, #CloseListBtn4').on('click', function () {
         ResetInputs();
     })
 

@@ -15,7 +15,6 @@ namespace ToDoList.Data
 
         public async Task<List<ToDoItemModel>> GetAllItemsByListIdAsync(int id)
         {
-            //var list = await _applicationDbContext.ToDoLists.Where(x => x.Id == id).FirstOrDefaultAsync();
             var res = await _applicationDbContext.ToDoItems.Where(x => x.ToDoListId == id)
                 .Select(s => new ToDoItemModel()
                 {
@@ -61,7 +60,7 @@ namespace ToDoList.Data
                 Name = s.Name,
                 Description = s.Description,
                 DateCreated = s.DateCreated,
-                DateReminder = s.DateReminder != null ? TimeZone.CurrentTimeZone.ToLocalTime((DateTime)s.DateReminder) : null,
+                DateReminder = s.DateReminder,
                 DueDate = s.DueDate,
                 ToDoListId = s.ToDoListId,
                 Status = s.Status,

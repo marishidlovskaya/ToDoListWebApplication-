@@ -11,7 +11,6 @@ namespace ToDoEntities
         public string UserId { get; set; }
         public User User { get; set; }
 
-
         public DateTime DateCreated { get; set; }
 
         public bool isListHidden { get; set; }
